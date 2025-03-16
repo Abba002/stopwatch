@@ -35,3 +35,40 @@ always @(posedge clk or posedge reset) begin
 end
 endmodule
 
+module stopwatch(
+    input clk_10hz, 
+    input clk_1hz,
+    input start_stop, //toggles counting
+    input reset, //resets to 00.0  
+    output reg [3:0] sec_ones, //seconds
+    output reg [3:0] sec_tens, //tens of seconds
+    output reg [3:0] tenths //tenths of a second
+);
+reg running =0;
+
+always @ (posedge start_stop) begin
+    running = ~running;
+end
+
+always @ (posedge clk_10hz or posedge reset) begin
+    if (reset) begin
+        tenths = 0;
+        sec_ones =0;
+        sec_tens =0;
+    end
+
+    else if (running) begin
+        if (tenths==9) begin
+            tenths =0;
+            if(sec_ones==9) begin
+                sec_ones =0;
+                if (sec_tens==9)
+                    sec_tens =0;
+                else 
+                    sec_ones = sec_ones+1;
+            end
+            else tenths = tenths +1;
+        end
+    end
+end
+endmodule
