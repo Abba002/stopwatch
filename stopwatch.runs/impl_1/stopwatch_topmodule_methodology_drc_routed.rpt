@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2023.2 (win64) Build 4029153 Fri Oct 13 20:14:34 MDT 2023
-| Date         : Mon Mar 17 02:09:35 2025
+| Date         : Mon Mar 17 02:18:19 2025
 | Host         : Ibukun running 64-bit major release  (build 9200)
 | Command      : report_methodology -file stopwatch_topmodule_methodology_drc_routed.rpt -pb stopwatch_topmodule_methodology_drc_routed.pb -rpx stopwatch_topmodule_methodology_drc_routed.rpx
 | Design       : stopwatch_topmodule
@@ -23,11 +23,11 @@ Table of Contents
           Floorplan: design_1
       Design limits: <entire design considered>
              Max violations: <unlimited>
-             Violations found: 109
+             Violations found: 106
 +-----------+------------------+-----------------------------+------------+
 | Rule      | Severity         | Description                 | Violations |
 +-----------+------------------+-----------------------------+------------+
-| TIMING-17 | Critical Warning | Non-clocked sequential cell | 109        |
+| TIMING-17 | Critical Warning | Non-clocked sequential cell | 106        |
 +-----------+------------------+-----------------------------+------------+
 
 2. REPORT DETAILS
@@ -454,125 +454,110 @@ Related violations: <none>
 
 TIMING-17#85 Critical Warning
 Non-clocked sequential cell  
-The clock pin ssd/an_reg[1]/C is not reached by a timing clock
+The clock pin ssd/an_reg[0]_lopt_replica/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#86 Critical Warning
 Non-clocked sequential cell  
-The clock pin ssd/an_reg[2]/C is not reached by a timing clock
+The clock pin ssd/an_reg[1]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#87 Critical Warning
 Non-clocked sequential cell  
-The clock pin ssd/an_reg[3]/C is not reached by a timing clock
+The clock pin ssd/an_reg[2]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#88 Critical Warning
 Non-clocked sequential cell  
-The clock pin ssd/digit_select_reg[0]/C is not reached by a timing clock
+The clock pin ssd/an_reg[3]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#89 Critical Warning
 Non-clocked sequential cell  
-The clock pin ssd/digit_select_reg[1]/C is not reached by a timing clock
+The clock pin ssd/digit_select_reg[0]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#90 Critical Warning
 Non-clocked sequential cell  
-The clock pin ssd/seg_reg[0]/C is not reached by a timing clock
+The clock pin ssd/digit_select_reg[1]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#91 Critical Warning
 Non-clocked sequential cell  
-The clock pin ssd/seg_reg[1]/C is not reached by a timing clock
+The clock pin ssd/seg_reg[0]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#92 Critical Warning
 Non-clocked sequential cell  
-The clock pin ssd/seg_reg[2]/C is not reached by a timing clock
+The clock pin ssd/seg_reg[1]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#93 Critical Warning
 Non-clocked sequential cell  
-The clock pin ssd/seg_reg[3]/C is not reached by a timing clock
+The clock pin ssd/seg_reg[2]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#94 Critical Warning
 Non-clocked sequential cell  
-The clock pin ssd/seg_reg[4]/C is not reached by a timing clock
+The clock pin ssd/seg_reg[3]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#95 Critical Warning
 Non-clocked sequential cell  
-The clock pin ssd/seg_reg[5]/C is not reached by a timing clock
+The clock pin ssd/seg_reg[4]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#96 Critical Warning
 Non-clocked sequential cell  
-The clock pin ssd/seg_reg[6]/C is not reached by a timing clock
+The clock pin ssd/seg_reg[5]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#97 Critical Warning
 Non-clocked sequential cell  
-The clock pin sw/running_reg/C is not reached by a timing clock
+The clock pin ssd/seg_reg[6]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#98 Critical Warning
 Non-clocked sequential cell  
-The clock pin sw/sec_ones_reg[0]/C is not reached by a timing clock
+The clock pin sw/running_reg/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#99 Critical Warning
 Non-clocked sequential cell  
-The clock pin sw/sec_ones_reg[1]/C is not reached by a timing clock
+The clock pin sw/sec_ones_reg[0]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#100 Critical Warning
 Non-clocked sequential cell  
-The clock pin sw/sec_ones_reg[2]/C is not reached by a timing clock
+The clock pin sw/sec_ones_reg[1]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#101 Critical Warning
 Non-clocked sequential cell  
-The clock pin sw/sec_ones_reg[3]/C is not reached by a timing clock
+The clock pin sw/sec_ones_reg[2]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#102 Critical Warning
 Non-clocked sequential cell  
-The clock pin sw/sec_tens_reg[0]/C is not reached by a timing clock
+The clock pin sw/sec_ones_reg[3]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#103 Critical Warning
 Non-clocked sequential cell  
-The clock pin sw/sec_tens_reg[1]/C is not reached by a timing clock
+The clock pin sw/tenths_reg[0]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#104 Critical Warning
 Non-clocked sequential cell  
-The clock pin sw/sec_tens_reg[2]/C is not reached by a timing clock
+The clock pin sw/tenths_reg[1]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#105 Critical Warning
 Non-clocked sequential cell  
-The clock pin sw/sec_tens_reg[3]/C is not reached by a timing clock
-Related violations: <none>
-
-TIMING-17#106 Critical Warning
-Non-clocked sequential cell  
-The clock pin sw/tenths_reg[0]/C is not reached by a timing clock
-Related violations: <none>
-
-TIMING-17#107 Critical Warning
-Non-clocked sequential cell  
-The clock pin sw/tenths_reg[1]/C is not reached by a timing clock
-Related violations: <none>
-
-TIMING-17#108 Critical Warning
-Non-clocked sequential cell  
 The clock pin sw/tenths_reg[2]/C is not reached by a timing clock
 Related violations: <none>
 
-TIMING-17#109 Critical Warning
+TIMING-17#106 Critical Warning
 Non-clocked sequential cell  
 The clock pin sw/tenths_reg[3]/C is not reached by a timing clock
 Related violations: <none>

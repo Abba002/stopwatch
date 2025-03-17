@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2023.2 (win64) Build 4029153 Fri Oct 13 20:14:34 MDT 2023
-| Date             : Mon Mar 17 02:09:35 2025
+| Date             : Mon Mar 17 02:18:20 2025
 | Host             : Ibukun running 64-bit major release  (build 9200)
 | Command          : report_power -file stopwatch_topmodule_power_routed.rpt -pb stopwatch_topmodule_power_summary_routed.pb -rpx stopwatch_topmodule_power_routed.rpx
 | Design           : stopwatch_topmodule
@@ -30,10 +30,10 @@ Table of Contents
 ----------
 
 +--------------------------+----------------------------------+
-| Total On-Chip Power (W)  | 37.574 (Junction temp exceeded!) |
+| Total On-Chip Power (W)  | 39.769 (Junction temp exceeded!) |
 | Design Power Budget (W)  | Unspecified*                     |
 | Power Budget Margin (W)  | NA                               |
-| Dynamic (W)              | 36.777                           |
+| Dynamic (W)              | 38.972                           |
 | Device Static (W)        | 0.797                            |
 | Effective TJA (C/W)      | 4.6                              |
 | Max Ambient (C)          | 0.0                              |
@@ -52,16 +52,16 @@ Table of Contents
 +----------------+-----------+----------+-----------+-----------------+
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
-| Slice Logic    |     0.790 |      242 |       --- |             --- |
-|   LUT as Logic |     0.680 |       90 |     63400 |            0.14 |
-|   Register     |     0.053 |      109 |    126800 |            0.09 |
+| Slice Logic    |     0.702 |      222 |       --- |             --- |
+|   LUT as Logic |     0.591 |       75 |     63400 |            0.12 |
+|   Register     |     0.054 |      106 |    126800 |            0.08 |
 |   CARRY4       |     0.051 |       20 |     15850 |            0.13 |
 |   BUFG         |     0.006 |        1 |        32 |            3.13 |
 |   Others       |     0.000 |       12 |       --- |             --- |
-| Signals        |     0.980 |      203 |       --- |             --- |
-| I/O            |    35.007 |       15 |       210 |            7.14 |
+| Signals        |     0.905 |      183 |       --- |             --- |
+| I/O            |    37.366 |       15 |       210 |            7.14 |
 | Static Power   |     0.797 |          |           |                 |
-| Total          |    37.574 |          |           |                 |
+| Total          |    39.769 |          |           |                 |
 +----------------+-----------+----------+-----------+-----------------+
 
 
@@ -71,9 +71,9 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint    |       1.000 |     2.341 |       1.778 |      0.563 |       NA    | Unspecified | NA         |
-| Vccaux    |       1.800 |     1.375 |       1.283 |      0.093 |       NA    | Unspecified | NA         |
-| Vcco33    |       3.300 |     9.910 |       9.906 |      0.004 |       NA    | Unspecified | NA         |
+| Vccint    |       1.000 |     2.177 |       1.615 |      0.563 |       NA    | Unspecified | NA         |
+| Vccaux    |       1.800 |     1.462 |       1.369 |      0.093 |       NA    | Unspecified | NA         |
+| Vcco33    |       3.300 |    10.578 |      10.574 |      0.004 |       NA    | Unspecified | NA         |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco18    |       1.800 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco15    |       1.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
@@ -138,12 +138,12 @@ Table of Contents
 +---------------------+-----------+
 | Name                | Power (W) |
 +---------------------+-----------+
-| stopwatch_topmodule |    36.777 |
-|   clk_div           |     0.583 |
+| stopwatch_topmodule |    38.972 |
+|   clk_div           |     0.601 |
 |   debounce_reset    |     0.010 |
-|   debounce_start    |     0.070 |
-|   ssd               |     0.555 |
-|   sw                |     0.406 |
+|   debounce_start    |     0.078 |
+|   ssd               |     0.512 |
+|   sw                |     0.271 |
 +---------------------+-----------+
 
 
