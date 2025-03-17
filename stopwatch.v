@@ -78,7 +78,7 @@ endmodule
 module seven_seg_display(
     input [3:0] digit1, //tens
     input [3:0] digit2, // ones
-    input [3:0] digit3, // thenths
+    input [3:0] digit3, // tenths
     input clk, // 1khz clock for display refresh
     output reg [6:0] seg, //7 seg 
     output reg [6:0] an //anode
@@ -113,4 +113,22 @@ function [6:0] hex_to_seg;
     endcase
     
 endfunction
+endmodule
+
+//this is my topmosule to connect the other 3 modules
+module stopwatch_topmodule(
+    input clk,
+    input start_stop,
+    input reset,
+    output [6:0] seg,
+    output [3:0] an
+
+);
+
+wire clk_1hz;
+wire [3:0] sec_ones, sec_tens, tenths;
+
+clock_divider clk_div(.clk(clk), .reset(reset), .clk_1hz(clk_1hz), .clk_10hz(clk_10hz));
+stopwatch sw(.clk_10hz(clk_10hz), .clk_1hz(clk_1hz), .start_stop(start_stop), .reset(reset), .sec_ones(sec_ones), .sec_tens(sec_tens, .tenths(tenths));
+seven_seg_display ssd(.digit1(sec_tens), .digit2(sec_ones), .digit3(tenths), .clk(clk), .seg(seg), .an(an));
 endmodule
