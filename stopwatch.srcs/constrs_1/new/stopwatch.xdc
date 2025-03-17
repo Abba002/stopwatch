@@ -27,3 +27,6 @@ set_property IOSTANDARD LVCMOS33 [get_ports {seg[0]}]
 set_property IOSTANDARD LVCMOS33 [get_ports clk]
 set_property IOSTANDARD LVCMOS33 [get_ports raw_reset]
 set_property IOSTANDARD LVCMOS33 [get_ports raw_start_stop]
+
+set_property PACKAGE_PIN H15 [get_ports dp]
+set_property IOSTANDARD LVCMOS33 [get_ports dp]

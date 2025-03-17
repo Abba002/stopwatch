@@ -105,7 +105,8 @@ module seven_seg_display(
     input [3:0] digit3, // tenths
     input clk, // 1khz clock for display refresh
     output reg [6:0] seg, //7 seg 
-    output reg [3:0] an //anode
+    output reg [3:0] an, //anode
+    output reg dp
 );
 
 reg [1:0] digit_select=0;
@@ -113,10 +114,10 @@ reg [1:0] digit_select=0;
 always @ (posedge clk) begin
     digit_select = digit_select +1;
     case(digit_select)
-        2'b00: begin an <= 4'b1110; seg <= hex_to_seg(digit3); end
+        2'b00: begin an <= 4'b1110; seg <= hex_to_seg(digit1); end
         2'b01: begin an <= 4'b1101; seg <= hex_to_seg(digit2); end
-        2'b10: begin an <= 4'b1011; seg <= hex_to_seg(digit1); end
-        2'b11: begin an <= 4'b0111; seg <= 7'b1111111; end
+        2'b10: begin an <= 4'b1011; seg <= hex_to_seg(digit3); end
+        2'b11: begin an <= 4'b0111; seg <= 7'b1111111; dp <= 1; end
     endcase
 end
 
@@ -145,8 +146,8 @@ module stopwatch_topmodule(
     input raw_start_stop,
     input raw_reset,
     output [6:0] seg,
-    output [3:0] an
-
+    output [3:0] an,
+    output dp
 );
 
 wire clk_1hz,clk_10hz;
@@ -174,6 +175,6 @@ always @(posedge clk ) begin
     end
 end
 
-seven_seg_display ssd(.digit1(sec_tens), .digit2(sec_ones), .digit3(tenths), .clk(clk_1khz), .seg(seg), .an(an));
+seven_seg_display ssd(.digit1(sec_tens), .digit2(sec_ones), .digit3(tenths), .clk(clk_1khz), .seg(seg), .an(an), .dp(dp));
 
 endmodule
