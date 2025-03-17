@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1742186474" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/stopwatch_topmodule.dcp">
+<GenRun Id="synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1742189776" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/stopwatch_topmodule.dcp">
   <File Type="PA-TCL" Name="stopwatch_topmodule.tcl"/>
   <File Type="RDS-PROPCONSTRS" Name="stopwatch_topmodule_drc_synth.rpt"/>
   <File Type="REPORTS-TCL" Name="stopwatch_topmodule_reports.tcl"/>
@@ -14,7 +14,7 @@
     <File Path="$PSRCDIR/sources_1/imports/stopwatch/stopwatch.v">
       <FileInfo>
         <Attr Name="ImportPath" Val="$PPRDIR/stopwatch.v"/>
-        <Attr Name="ImportTime" Val="1742186467"/>
+        <Attr Name="ImportTime" Val="1742189169"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
         <Attr Name="UsedIn" Val="simulation"/>

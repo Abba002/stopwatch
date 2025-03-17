@@ -10,10 +10,11 @@ always @ (posedge clk) begin
     if (button==button_state)
         count <=0;
     else begin
-        count = count+1;
-        if (count == 1000000) begin
+        count <= count+1;
+        if (count >= 1000000) begin
             button_state <= button;
             clean_button <= button;
+            count<=0;
         end
     end
 end
@@ -32,23 +33,23 @@ reg [26:0] count_10hz = 0;
 
 always @(posedge clk or posedge reset) begin
     if (reset) begin
-        count_1hz =0;
-        count_10hz =0;
-        clk_1hz =0;
-        clk_10hz=0;
+        count_1hz <=0;
+        count_10hz <=0;
+        clk_1hz <=0;
+        clk_10hz <=0;
     end
     else begin
         //100M cyclesto 1hz
-        if (count_1hz >=50000000) begin
+        if (count_1hz >=50000000-1) begin
             count_1hz =0;
             clk_1hz = ~clk_1hz;
         end
         else 
         count_1hz = count_1hz+1;
 
-        if (count_10hz>= 5000000) begin
-            count_10hz= 0;
-            clk_10hz=~clk_10hz;
+        if (count_10hz>= 5000000-1) begin
+            count_10hz<= 0;
+            clk_10hz<=~clk_10hz;
         end
         else
         count_10hz = count_10hz +1;
@@ -69,30 +70,30 @@ module stopwatch(
 reg running =0;
 
 always @ (posedge start_stop) begin
-    running = ~running;
+    running <= ~running;
 end
 
 always @ (posedge clk_10hz or posedge reset) begin
     if (reset) begin
-        tenths = 0;
-        sec_ones =0;
-        sec_tens =0;
+        tenths <= 0;
+        sec_ones <=0;
+        sec_tens <=0;
     end
 
     else if (running) begin
         if (tenths==9) begin
             tenths =0;
             if(sec_ones==9) begin
-                sec_ones =0;
+                sec_ones <=0;
                 if (sec_tens==9)
-                    sec_tens =0;
+                    sec_tens <=0;
                 else 
-                    sec_tens = sec_tens+1;
+                    sec_tens <= sec_tens+1;
             end
             else
-                sec_ones = sec_ones+1;
+                sec_ones <= sec_ones+1;
         end
-        else tenths = tenths +1;
+        else tenths <= tenths +1;
     end
 end
 endmodule
@@ -104,7 +105,7 @@ module seven_seg_display(
     input [3:0] digit3, // tenths
     input clk, // 1khz clock for display refresh
     output reg [6:0] seg, //7 seg 
-    output reg [4:0] an //anode
+    output reg [3:0] an //anode
 );
 
 reg [1:0] digit_select=0;
@@ -112,26 +113,26 @@ reg [1:0] digit_select=0;
 always @ (posedge clk) begin
     digit_select = digit_select +1;
     case(digit_select)
-        2'b00: begin an = 4'b1110; seg = hex_to_seg(digit1); end
-        2'b01: begin an = 4'b1101; seg = hex_to_seg(digit2); end
-        2'b10: begin an = 4'b1011; seg = hex_to_seg(digit3); end
-        2'b11: begin an = 4'b0111; seg = 7'b1111111; end
+        2'b00: begin an <= 4'b1110; seg <= hex_to_seg(digit1); end
+        2'b01: begin an <= 4'b1101; seg <= hex_to_seg(digit2); end
+        2'b10: begin an <= 4'b1011; seg <= hex_to_seg(digit3); end
+        2'b11: begin an <= 4'b0111; seg <= 7'b1111111; end
     endcase
 end
 
 function [6:0] hex_to_seg;
     input [3:0] num;
     case (num)
-        4'h0: hex_to_seg = 7'b0000001;
-        4'h1: hex_to_seg = 7'b1001111;
-        4'h2: hex_to_seg = 7'b0010010;
-        4'h3: hex_to_seg = 7'b0000110;
-        4'h4: hex_to_seg = 7'b1001100;
-        4'h5: hex_to_seg = 7'b0100100;
-        4'h6: hex_to_seg = 7'b0100000;
-        4'h7: hex_to_seg = 7'b0001111;
+        4'h0: hex_to_seg = 7'b1000000;
+        4'h1: hex_to_seg = 7'b1111001;
+        4'h2: hex_to_seg = 7'b0100100;
+        4'h3: hex_to_seg = 7'b0110000;
+        4'h4: hex_to_seg = 7'b0011001;
+        4'h5: hex_to_seg = 7'b0010010;
+        4'h6: hex_to_seg = 7'b0000010;
+        4'h7: hex_to_seg = 7'b1111000;
         4'h8: hex_to_seg = 7'b0000000;
-        4'h9: hex_to_seg = 7'b0000100;
+        4'h9: hex_to_seg = 7'b0010000;
         default: hex_to_seg = 7'b1111111;
     endcase
     
@@ -153,8 +154,26 @@ wire start_stop, reset;
 wire [3:0] sec_ones, sec_tens, tenths;
 
 clock_divider clk_div(.clk(clk), .reset(reset), .clk_1hz(clk_1hz), .clk_10hz(clk_10hz));
+
 debouncer debounce_start(.clk(clk), .button(raw_start_stop), .clean_button(start_stop));
 debouncer debounce_reset(.clk(clk), .button(raw_reset), .clean_button(reset));
+
 stopwatch sw(.clk_10hz(clk_10hz), .clk_1hz(clk_1hz), .start_stop(start_stop), .reset(reset), .sec_ones(sec_ones), .sec_tens(sec_tens), .tenths(tenths));
-seven_seg_display ssd(.digit1(sec_tens), .digit2(sec_ones), .digit3(tenths), .clk(clk_1hz), .seg(seg), .an(an));
+
+reg [16:0] count_display =0;
+reg clk_1khz =0;
+
+always @(posedge clk ) begin
+    if (count_display>=50000-1) begin
+        count_display <= 0;
+        clk_1khz <= ~clk_1khz;
+    end
+    else begin
+        count_display <= count_display +1;
+        
+    end
+end
+
+seven_seg_display ssd(.digit1(sec_tens), .digit2(sec_ones), .digit3(tenths), .clk(clk_1khz), .seg(seg), .an(an));
+
 endmodule
