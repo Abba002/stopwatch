@@ -129,6 +129,6 @@ wire clk_1hz;
 wire [3:0] sec_ones, sec_tens, tenths;
 
 clock_divider clk_div(.clk(clk), .reset(reset), .clk_1hz(clk_1hz), .clk_10hz(clk_10hz));
-stopwatch sw(.clk_10hz(clk_10hz), .clk_1hz(clk_1hz), .start_stop(start_stop), .reset(reset), .sec_ones(sec_ones), .sec_tens(sec_tens), .tenths(tenths));
+stopwatch sw(.clk_10hz(clk_10hz), .clk_1hz(clk_1hz), .start_stop(start_stop), .reset(reset), .sec_ones(sec_ones), .sec_tens(sec_tens, .tenths(tenths));
 seven_seg_display ssd(.digit1(sec_tens), .digit2(sec_ones), .digit3(tenths), .clk(clk), .seg(seg), .an(an));
 endmodule
