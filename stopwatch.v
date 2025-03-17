@@ -115,8 +115,8 @@ always @ (posedge clk) begin
     digit_select = digit_select +1;
     case(digit_select)
         2'b00: begin an <= 4'b1110; seg <= hex_to_seg(digit3);dp <= 1; end
-        2'b01: begin an <= 4'b1101; seg <= hex_to_seg(digit2);dp <= 1; end
-        2'b10: begin an <= 4'b1011; seg <= hex_to_seg(digit1);dp <= 0; end
+        2'b01: begin an <= 4'b1101; seg <= hex_to_seg(digit2);dp <= 0; end
+        2'b10: begin an <= 4'b1011; seg <= hex_to_seg(digit1);dp <= 1; end
         2'b11: begin an <= 4'b0111; seg <= 7'b1111111; dp <= 1; end
     endcase
 end

@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2023.2 (win64) Build 4029153 Fri Oct 13 20:14:34 MDT 2023
-| Date         : Mon Mar 17 02:17:45 2025
+| Date         : Mon Mar 17 02:25:12 2025
 | Host         : Ibukun running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file stopwatch_topmodule_control_sets_placed.rpt
 | Design       : stopwatch_topmodule
@@ -23,11 +23,11 @@ Table of Contents
 +----------------------------------------------------------+-------+
 |                          Status                          | Count |
 +----------------------------------------------------------+-------+
-| Total control sets                                       |    13 |
-|    Minimum number of control sets                        |    13 |
+| Total control sets                                       |    14 |
+|    Minimum number of control sets                        |    14 |
 |    Addition due to synthesis replication                 |     0 |
 |    Addition due to physical synthesis replication        |     0 |
-| Unused register locations in slices containing registers |    54 |
+| Unused register locations in slices containing registers |    58 |
 +----------------------------------------------------------+-------+
 * Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
 ** Run report_qor_suggestions for automated merging and remapping suggestions
@@ -39,9 +39,9 @@ Table of Contents
 +--------------------+-------+
 |       Fanout       | Count |
 +--------------------+-------+
-| Total control sets |    13 |
+| Total control sets |    14 |
 | >= 0 to < 4        |     5 |
-| >= 4 to < 6        |     2 |
+| >= 4 to < 6        |     3 |
 | >= 6 to < 8        |     2 |
 | >= 8 to < 10       |     0 |
 | >= 10 to < 12      |     0 |
@@ -62,7 +62,7 @@ Table of Contents
 | No           | No                    | Yes                    |               1 |            1 |
 | No           | Yes                   | No                     |              63 |           17 |
 | Yes          | No                    | No                     |               2 |            2 |
-| Yes          | No                    | Yes                    |              31 |           11 |
+| Yes          | No                    | Yes                    |              35 |           13 |
 | Yes          | Yes                   | No                     |               0 |            0 |
 +--------------+-----------------------+------------------------+-----------------+--------------+
 
@@ -78,14 +78,15 @@ Table of Contents
 |  clk_IBUF_BUFG               |                                | debounce_reset/reset               |                1 |              1 |         1.00 |
 |  clk_IBUF_BUFG               | debounce_reset/button_state    |                                    |                1 |              1 |         1.00 |
 |  clk_IBUF_BUFG               | debounce_start/button_state    |                                    |                1 |              1 |         1.00 |
+|  clk_div/CLK                 | sw/sec_ones[3]_i_1_n_0         | debounce_reset/reset               |                3 |              4 |         1.33 |
+|  clk_div/CLK                 | sw/sec_tens[3]_i_1_n_0         | debounce_reset/reset               |                1 |              4 |         4.00 |
 |  clk_div/CLK                 | sw/tenths[3]_i_1_n_0           | debounce_reset/reset               |                1 |              4 |         4.00 |
-|  clk_div/CLK                 | sw/sec_ones[3]_i_1_n_0         | debounce_reset/reset               |                1 |              4 |         4.00 |
 |  clk_1khz                    |                                |                                    |                3 |              7 |         2.33 |
 |  clk_1khz                    |                                | ssd/seg[6]_i_1_n_0                 |                3 |              7 |         2.33 |
 |  clk_IBUF_BUFG               |                                | count_display[0]_i_1_n_0           |                4 |             16 |         4.00 |
 |  clk_IBUF_BUFG               |                                | debounce_reset/count[0]_i_1__0_n_0 |                5 |             20 |         4.00 |
 |  clk_IBUF_BUFG               |                                | debounce_start/count[0]_i_1_n_0    |                5 |             20 |         4.00 |
-|  clk_IBUF_BUFG               | clk_div/count_10hz[22]_i_1_n_0 | debounce_reset/reset               |                9 |             23 |         2.56 |
+|  clk_IBUF_BUFG               | clk_div/count_10hz[22]_i_1_n_0 | debounce_reset/reset               |                8 |             23 |         2.88 |
 +------------------------------+--------------------------------+------------------------------------+------------------+----------------+--------------+
 
 

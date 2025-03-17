@@ -95,7 +95,7 @@
       <File Path="$PSRCDIR/sources_1/imports/stopwatch/stopwatch.v">
         <FileInfo>
           <Attr Name="ImportPath" Val="$PPRDIR/stopwatch.v"/>
-          <Attr Name="ImportTime" Val="1742192080"/>
+          <Attr Name="ImportTime" Val="1742192558"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
