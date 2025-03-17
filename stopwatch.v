@@ -1,3 +1,24 @@
+module debouncer(
+    input clk,
+    input button,
+    output reg clean_button 
+);
+reg [19:0] count =0;
+reg button_state =0;
+
+always @ (posedge clk) begin
+    if (button==button_state)
+        count <=0;
+    else begin
+        count = count+1;
+        if (count == 1000000) begin
+            button_state <= button;
+            clean_button <= button;
+        end
+    end
+end
+
+endmodule
 //clock divider to generate 1hz and 10hz clock 
 module clock_divider(
     input clk,   //100Mhz fpga clock
@@ -66,10 +87,12 @@ always @ (posedge clk_10hz or posedge reset) begin
                 if (sec_tens==9)
                     sec_tens =0;
                 else 
-                    sec_ones = sec_ones+1;
+                    sec_tens = sec_tens+1;
             end
-            else tenths = tenths +1;
+            else
+                sec_ones = sec_ones+1;
         end
+        else tenths = tenths +1;
     end
 end
 endmodule
@@ -81,7 +104,7 @@ module seven_seg_display(
     input [3:0] digit3, // tenths
     input clk, // 1khz clock for display refresh
     output reg [6:0] seg, //7 seg 
-    output reg [6:0] an //anode
+    output reg [4:0] an //anode
 );
 
 reg [1:0] digit_select=0;
@@ -118,17 +141,20 @@ endmodule
 //this is my topmosule to connect the other 3 modules
 module stopwatch_topmodule(
     input clk,
-    input start_stop,
-    input reset,
+    input raw_start_stop,
+    input raw_reset,
     output [6:0] seg,
     output [3:0] an
 
 );
 
-wire clk_1hz;
+wire clk_1hz,clk_10hz;
+wire start_stop, reset;
 wire [3:0] sec_ones, sec_tens, tenths;
 
 clock_divider clk_div(.clk(clk), .reset(reset), .clk_1hz(clk_1hz), .clk_10hz(clk_10hz));
+debouncer debounce_start(.clk(clk), .button(raw_start_stop), .clean_button(start_stop));
+debouncer debounce_reset(.clk(clk), .button(raw_reset), .clean_button(reset));
 stopwatch sw(.clk_10hz(clk_10hz), .clk_1hz(clk_1hz), .start_stop(start_stop), .reset(reset), .sec_ones(sec_ones), .sec_tens(sec_tens), .tenths(tenths));
-seven_seg_display ssd(.digit1(sec_tens), .digit2(sec_ones), .digit3(tenths), .clk(clk), .seg(seg), .an(an));
+seven_seg_display ssd(.digit1(sec_tens), .digit2(sec_ones), .digit3(tenths), .clk(clk_1hz), .seg(seg), .an(an));
 endmodule
